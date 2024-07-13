@@ -8,6 +8,10 @@
 body {
 	width: 350px;
 	margin: 10px;
+
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
 }
 
 body::-webkit-scrollbar {
@@ -15,7 +19,7 @@ body::-webkit-scrollbar {
 }
 
 input {
-	width: 340px;
+	width: 330px;
 	height: 30px;
 	padding-left: 10px;
 	background-color: #292929;
@@ -49,7 +53,13 @@ img {
 	overflow: hidden;
 }
 
+#nobookmark {
+	font-size: 16px;
+	font-weight: bold;
+}
+
 a {
 	font-size: 14px;
+	font-weight: normal;
 	text-decoration: none;
 }

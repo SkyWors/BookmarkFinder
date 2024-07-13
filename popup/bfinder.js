@@ -43,30 +43,45 @@ chrome.bookmarks.getTree(function(bookmarks) {
 			}
 		})
 
-		document.getElementById("search").addEventListener("input", function (event) {
-			var searchTerm = event.target.value.toLowerCase();
-			var listItems = document.querySelectorAll('#item');
+		var listItems = document.querySelectorAll('#item');
+		var visibleItems = []
+		visibleItems.push(listItems[0]);
 
-			listItems.forEach(function (item) {
-				var itemText = item.textContent.toLowerCase();
+		if (Object.keys(listItems).length === 0) {
+			document.body.textContent = "There is currently no bookmark here.";
+		} else {
+			document.getElementById("search").addEventListener("input", function (event) {
+				var searchTerm = event.target.value.toLowerCase();
 
-				if (itemText.includes(searchTerm)) {
-					item.style.display = "flex";
+				listItems.forEach(function (item) {
+					var itemText = item.textContent.toLowerCase();
+
+					if (itemText.includes(searchTerm)) {
+						item.style.display = "flex";
+					} else {
+						item.style.display = "none";
+					}
+				});
+
+				visibleItems = Array.from(listItems).filter(function(item) {
+					return window.getComputedStyle(item).display === "flex";
+				});
+
+				if (Object.keys(visibleItems).length === 0) {
+					let text = document.createElement("a");
+					text.textContent = "No bookmark were found.";
+					text.id = "nobookmark";
+					document.body.append(text);
 				} else {
-					item.style.display = "none";
+					document.getElementById("nobookmark").remove();
 				}
 			});
-		});
 
-		document.addEventListener('keydown', function (event) {
-			var listItems = document.querySelectorAll('#item');
-			var visibleItems = Array.from(listItems).filter(function(item) {
-				return window.getComputedStyle(item).display === "flex";
-			});
-
-			if (event.key === "Enter") {
-				window.open(visibleItems[0].href);
-			}
-		})
+			document.addEventListener('keydown', function (event) {
+				if (event.key === "Enter") {
+					window.open(visibleItems[0].href);
+				}
+			})
+		}
     }
 });
