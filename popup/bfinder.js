@@ -48,7 +48,10 @@ chrome.bookmarks.getTree(function(bookmarks) {
 		visibleItems.push(listItems[0]);
 
 		if (Object.keys(listItems).length === 0) {
-			document.body.textContent = "There is currently no bookmark here.";
+			document.body.textContent = "";
+			let text = document.createElement("a");
+			text.textContent = "There is currently no bookmark here.";
+			document.body.append(text);
 		} else {
 			document.getElementById("search").addEventListener("input", function (event) {
 				var searchTerm = event.target.value.toLowerCase();
@@ -68,10 +71,12 @@ chrome.bookmarks.getTree(function(bookmarks) {
 				});
 
 				if (Object.keys(visibleItems).length === 0) {
-					let text = document.createElement("a");
-					text.textContent = "No bookmark were found.";
-					text.id = "nobookmark";
-					document.body.append(text);
+					if (!document.querySelector("#nobookmark")) {
+						let text = document.createElement("a");
+						text.textContent = "No bookmark were found.";
+						text.id = "nobookmark";
+						document.body.append(text);
+					}
 				} else {
 					document.getElementById("nobookmark").remove();
 				}

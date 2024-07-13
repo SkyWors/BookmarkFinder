@@ -7,7 +7,7 @@
 
 body {
 	width: 350px;
-	margin: 10px;
+	margin: 0px 10px 13px 10px;
 
 	font-size: 16px;
 	font-weight: bold;
@@ -16,6 +16,14 @@ body {
 
 body::-webkit-scrollbar {
 	display: none;
+}
+
+.search {
+	position: sticky;
+	top: 0px;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	background-color: #0f0f0f;
 }
 
 input {
@@ -33,7 +41,7 @@ input:focus {
 }
 
 .list {
-	margin: 15px;
+	margin: 0px 15px 0px 15px;
 }
 
 img {
@@ -45,7 +53,7 @@ img {
 	display: flex;
 	flex-direction: row;
 	gap: 15px;
-	margin-top: 10px;
+	margin-bottom: 10px;
 
 	white-space: pre-wrap;
 	text-wrap: nowrap;
@@ -53,12 +61,12 @@ img {
 	overflow: hidden;
 }
 
-#nobookmark {
+body a, #nobookmark {
 	font-size: 16px;
 	font-weight: bold;
 }
 
-a {
+.list a {
 	font-size: 14px;
 	font-weight: normal;
 	text-decoration: none;
